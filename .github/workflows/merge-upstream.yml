@@ -37,8 +37,11 @@ jobs:
         git config --global pull.rebase false
         git config --global --list
     - name: Load upstream commits
-      run: git pull https://github.com/coolsnowwolf/lede.git --log --no-commit
-
+      run:  |
+        git pull https://github.com/coolsnowwolf/lede.git --log --no-commit
+        cd ./lede
+        git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
+        
     - name: Apply commit changes
       run: |
         if [ -f ./.git/MERGE_MSG ]; then
